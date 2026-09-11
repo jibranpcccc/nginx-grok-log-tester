@@ -1,0 +1,55 @@
+{
+  "openapi": "3.1.0",
+  "info": {
+    "title": "GrokLogTester - HAProxy & Ingress-Nginx Log Grok Pattern Matcher API",
+    "description": "High-throughput PCRE regex extraction and structured log tokenization API. Official production documentation hosted at https://groklogtester.pages.dev/",
+    "version": "1.1.0",
+    "contact": {
+      "name": "GrokLogTester Architecture Team",
+      "url": "https://groklogtester.pages.dev/"
+    }
+  },
+  "servers": [
+    {
+      "url": "https://groklogtester.pages.dev",
+      "description": "Production Web Application Gateway"
+    }
+  ],
+  "paths": {
+    "/api/v1/parse-log": {
+      "get": {
+        "summary": "Extract structured JSON fields from raw HTTP proxy access logs",
+        "description": "Executes the empirical calculations and data models for GrokLogTester.",
+        "responses": {
+          "200": {
+            "description": "Successful calculation response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "status": {
+                      "type": "string",
+                      "example": "ok"
+                    },
+                    "timestamp": {
+                      "type": "string",
+                      "format": "date-time"
+                    },
+                    "site_url": {
+                      "type": "string",
+                      "example": "https://groklogtester.pages.dev/"
+                    },
+                    "data": {
+                      "type": "object"
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+}
